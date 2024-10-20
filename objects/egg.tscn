@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://jkgvp3qdjt38"]
+
+[ext_resource type="Texture2D" uid="uid://bg4m2k2r12y3q" path="res://egg.png" id="1_1ec0b"]
+[ext_resource type="Script" path="res://src/Egg.cs" id="1_k1lhe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uspeb"]
+radius = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0na6o"]
+atlas = ExtResource("1_1ec0b")
+region = Rect2(0, 10, 32, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebora"]
+atlas = ExtResource("1_1ec0b")
+region = Rect2(0, 0, 32, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfjd7"]
+atlas = ExtResource("1_1ec0b")
+region = Rect2(0, 0, 6, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uftj4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebora")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfjd7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Egg" type="Area2D"]
+position = Vector2(43, 64)
+script = ExtResource("1_k1lhe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -5)
+shape = SubResource("CircleShape2D_uspeb")
+
+[node name="Egg" type="Sprite2D" parent="."]
+position = Vector2(0, -11)
+texture = SubResource("AtlasTexture_0na6o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -16)
+sprite_frames = SubResource("SpriteFrames_uftj4")
+autoplay = "default"
+frame_progress = 0.628567
