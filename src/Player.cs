@@ -5,13 +5,20 @@ public partial class Player : RigidBody2D
 {
 	[Export] float TorqueForce = 100f;
 	[Export] float ThrusterForce = 100f;
+	[Export] float MaxFuel = 60f;
 	[ExportGroup("Components")]
 	[Export] GpuParticles2D ThrustParticles;
 	[Export] PackedScene ExplosionTemplate;
 	public int EggRescued;
 	public int EggDelivered;
-	public bool IsDelivering;
+	public bool IsInGoal;
 	private float DeliverCooldown;
+	private float FuelUsed = 0f;
+	public float FuelPercent {
+		get {
+			return 1f - (FuelUsed / MaxFuel);
+		}
+	}
     public override void _Ready()
     {
         BodyEntered += OnBodyEntered;
@@ -33,6 +40,7 @@ public partial class Player : RigidBody2D
     public void Reset() {
 		EggRescued = 0;
 		EggDelivered = 0;
+		FuelUsed = 0f;
 	}
     public override void _PhysicsProcess(double delta)
     {
@@ -41,18 +49,26 @@ public partial class Player : RigidBody2D
         var torque = Input.GetAxis("ui_left", "ui_right");
         var thrust = Input.IsActionPressed("ui_down");
         if (torque != 0) ApplyTorque(torque * TorqueForce);
-        if (thrust)
+        if (thrust && FuelUsed<MaxFuel)
         {
             var force = Vector2.Up.Rotated(this.Rotation) * ThrusterForce;
             ApplyForce(force);
+			FuelUsed += (float)delta;
+			ThrustParticles.Emitting = true;
         }
-        ThrustParticles.Emitting = thrust;
+		else {
+			ThrustParticles.Emitting = false;
+		}
     }
     private void ProcessEggDeliver(double delta)
     {
+		if (IsInGoal) {
+			FuelUsed -= (float)delta;
+			if (FuelUsed < 0) FuelUsed = 0;
+		}
         if (DeliverCooldown <= 0)
         {
-            if (IsDelivering && EggRescued > 0)
+            if (IsInGoal && EggRescued > 0)
             {
                 DeliverCooldown = 1f;
                 EggRescued -= 1;

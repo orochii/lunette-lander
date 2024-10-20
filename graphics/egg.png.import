@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp0hl35s61xq8"
-path="res://.godot/imported/lunette.png-6f8f96e3ec7b70c309c43185e65a7d06.ctex"
+uid="uid://bg4m2k2r12y3q"
+path="res://.godot/imported/egg.png-6f84dc99f579bff45398870edca10449.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lunette.png"
-dest_files=["res://.godot/imported/lunette.png-6f8f96e3ec7b70c309c43185e65a7d06.ctex"]
+source_file="res://graphics/egg.png"
+dest_files=["res://.godot/imported/egg.png-6f84dc99f579bff45398870edca10449.ctex"]
 
 [params]
 

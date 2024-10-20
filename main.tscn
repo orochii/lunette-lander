@@ -1,21 +1,21 @@
 [gd_scene load_steps=32 format=3 uid="uid://bptrryf70yw4r"]
 
-[ext_resource type="Texture2D" uid="uid://p3s4rtth223t" path="res://gridBack.png" id="1_eth3j"]
+[ext_resource type="Texture2D" uid="uid://p3s4rtth223t" path="res://graphics/gridBack.png" id="1_eth3j"]
 [ext_resource type="Script" path="res://src/Player.cs" id="1_o7lns"]
-[ext_resource type="Texture2D" uid="uid://dp0hl35s61xq8" path="res://lunette.png" id="1_ytbn7"]
+[ext_resource type="Texture2D" uid="uid://dp0hl35s61xq8" path="res://graphics/lunette.png" id="1_ytbn7"]
 [ext_resource type="Script" path="res://src/TerrainGenerator.cs" id="2_4oqpm"]
-[ext_resource type="Texture2D" uid="uid://jk26usfyke5w" path="res://goal.png" id="4_6mtoh"]
+[ext_resource type="Texture2D" uid="uid://jk26usfyke5w" path="res://graphics/goal.png" id="4_6mtoh"]
 [ext_resource type="Script" path="res://src/Level.cs" id="5_uij61"]
 [ext_resource type="Script" path="res://src/PlayerGoal.cs" id="6_by302"]
-[ext_resource type="Texture2D" uid="uid://cn6rfahfudxb5" path="res://goalDecorations.png" id="6_gosr0"]
+[ext_resource type="Texture2D" uid="uid://cn6rfahfudxb5" path="res://graphics/goalDecorations.png" id="6_gosr0"]
 [ext_resource type="PackedScene" uid="uid://b6c67mnj60p4d" path="res://objects/explosion.tscn" id="9_c0oo2"]
 [ext_resource type="Script" path="res://src/Minimap.cs" id="9_fk3gp"]
 [ext_resource type="PackedScene" uid="uid://jkgvp3qdjt38" path="res://objects/egg.tscn" id="9_idegc"]
-[ext_resource type="Texture2D" uid="uid://bg4m2k2r12y3q" path="res://egg.png" id="9_vbpi1"]
+[ext_resource type="Texture2D" uid="uid://bg4m2k2r12y3q" path="res://graphics/egg.png" id="9_vbpi1"]
 [ext_resource type="Script" path="res://src/AwayView.cs" id="11_1p5ls"]
 [ext_resource type="Script" path="res://src/Hud.cs" id="11_gv6qn"]
-[ext_resource type="Texture2D" uid="uid://ccdj0iv8trma3" path="res://border.png" id="12_xqf5r"]
-[ext_resource type="FontFile" uid="uid://brjf5xp3log2f" path="res://m3x6oz.ttf" id="13_6iclm"]
+[ext_resource type="Texture2D" uid="uid://ccdj0iv8trma3" path="res://graphics/border.png" id="12_xqf5r"]
+[ext_resource type="FontFile" uid="uid://brjf5xp3log2f" path="res://graphics/m3x6oz.ttf" id="13_6iclm"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_1ero0"]
 noise_type = 3
@@ -214,7 +214,6 @@ texture = ExtResource("1_ytbn7")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Level/Player"]
 position = Vector2(7.62939e-06, 13)
-scale = Vector2(1, 1)
 emitting = false
 amount = 64
 process_material = SubResource("ParticleProcessMaterial_wrsry")
@@ -317,7 +316,7 @@ patch_margin_top = 2
 patch_margin_right = 2
 patch_margin_bottom = 2
 
-[node name="HUD" type="MarginContainer" parent="CanvasLayer/UI" node_paths=PackedStringArray("EggLabel", "Player", "Level")]
+[node name="HUD" type="MarginContainer" parent="CanvasLayer/UI" node_paths=PackedStringArray("EggLabel", "FuelBack", "FuelBar", "Player", "Level")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -330,11 +329,54 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 script = ExtResource("11_gv6qn")
 EggLabel = NodePath("VBoxContainer/Left_Rescued_Delivered/Label")
+FuelBack = NodePath("VBoxContainer/Fuel/NinePatchRect/MarginContainer/ColorRect")
+FuelBar = NodePath("VBoxContainer/Fuel/NinePatchRect/MarginContainer/ColorRect/ColorRect2")
 Player = NodePath("../../../Level/Player")
 Level = NodePath("../../../Level")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/HUD"]
 layout_mode = 2
+
+[node name="Fuel" type="HBoxContainer" parent="CanvasLayer/UI/HUD/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/HUD/VBoxContainer/Fuel"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("13_6iclm")
+theme_override_font_sizes/font_size = 10
+text = "Fuel"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/UI/HUD/VBoxContainer/Fuel"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+texture = ExtResource("12_xqf5r")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/HUD/VBoxContainer/Fuel/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/UI/HUD/VBoxContainer/Fuel/NinePatchRect/MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/UI/HUD/VBoxContainer/Fuel/NinePatchRect/MarginContainer/ColorRect"]
+layout_mode = 2
+offset_right = 150.0
+offset_bottom = 2.0
 
 [node name="Left_Rescued_Delivered" type="HBoxContainer" parent="CanvasLayer/UI/HUD/VBoxContainer"]
 layout_mode = 2

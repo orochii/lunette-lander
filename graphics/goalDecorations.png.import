@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p3s4rtth223t"
-path="res://.godot/imported/gridBack.png-1c1c16979dd1118d646fbb656ece2431.ctex"
+uid="uid://cn6rfahfudxb5"
+path="res://.godot/imported/goalDecorations.png-f86eb46f470b4daefb91252d69457f29.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gridBack.png"
-dest_files=["res://.godot/imported/gridBack.png-1c1c16979dd1118d646fbb656ece2431.ctex"]
+source_file="res://graphics/goalDecorations.png"
+dest_files=["res://.godot/imported/goalDecorations.png-f86eb46f470b4daefb91252d69457f29.ctex"]
 
 [params]
 

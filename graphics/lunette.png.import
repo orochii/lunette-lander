@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jk26usfyke5w"
-path="res://.godot/imported/goal.png-d8026b4c83cd0c976a2c07258ba1a29e.ctex"
+uid="uid://dp0hl35s61xq8"
+path="res://.godot/imported/lunette.png-771ed8933177167ed0228bf0554ad649.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://goal.png"
-dest_files=["res://.godot/imported/goal.png-d8026b4c83cd0c976a2c07258ba1a29e.ctex"]
+source_file="res://graphics/lunette.png"
+dest_files=["res://.godot/imported/lunette.png-771ed8933177167ed0228bf0554ad649.ctex"]
 
 [params]
 

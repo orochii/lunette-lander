@@ -17,13 +17,13 @@ public partial class PlayerGoal : StaticBody2D
 	private void OnBodyEntered(Node2D body) {
 		if (body is Player) {
 			var player = body as Player;
-			player.IsDelivering = true;
+			player.IsInGoal = true;
 		}
 	}
 	private void OnBodyExited(Node2D body) {
 		if (body is Player) {
 			var player = body as Player;
-			player.IsDelivering = false;
+			player.IsInGoal = false;
 		}
 	}
     public void Resize(float w, float h) {
