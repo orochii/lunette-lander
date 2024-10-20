@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://btwlot40p1vjh"]
+
+[ext_resource type="Script" path="res://src/Enemy.cs" id="1_d0kes"]
+[ext_resource type="Texture2D" uid="uid://o0wp5yrlx5u2" path="res://graphics/saturnian.png" id="2_03lhr"]
+[ext_resource type="Script" path="res://src/Eye.cs" id="3_mfyuw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r1peb"]
+radius = 16.0
+
+[node name="Enemy" type="RigidBody2D" node_paths=PackedStringArray("Eyes")]
+position = Vector2(121, 73)
+script = ExtResource("1_d0kes")
+Eyes = [NodePath("Saturnian/EyeLeft"), NodePath("Saturnian/EyeRight")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r1peb")
+
+[node name="Saturnian" type="Sprite2D" parent="."]
+texture = ExtResource("2_03lhr")
+
+[node name="EyeLeft" type="Control" parent="Saturnian" node_paths=PackedStringArray("EyeObject")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -9.0
+offset_top = -6.0
+offset_right = -4.0
+offset_bottom = -3.0
+script = ExtResource("3_mfyuw")
+EyeObject = NodePath("PupilLeft")
+
+[node name="PupilLeft" type="ColorRect" parent="Saturnian/EyeLeft"]
+layout_mode = 0
+offset_right = 2.0
+offset_bottom = 2.0
+color = Color(0.329158, 0.329158, 0.329158, 1)
+
+[node name="EyeRight" type="Control" parent="Saturnian" node_paths=PackedStringArray("EyeObject")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 4.0
+offset_top = -6.0
+offset_right = 9.0
+offset_bottom = -3.0
+script = ExtResource("3_mfyuw")
+EyeObject = NodePath("PupilRight")
+
+[node name="PupilRight" type="ColorRect" parent="Saturnian/EyeRight"]
+layout_mode = 0
+offset_right = 2.0
+offset_bottom = 2.0
+color = Color(0.329158, 0.329158, 0.329158, 1)

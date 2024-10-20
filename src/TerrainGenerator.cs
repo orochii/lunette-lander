@@ -52,7 +52,6 @@ public partial class TerrainGenerator : StaticBody2D
 				float nY = Mathf.Lerp(v, sample, factor);
 				float oX = points[idx].X;
 				points[idx] = new Vector2(oX, nY);
-				//GD.Print(idx,":",v,"->", nY);
 			}
 		}
 		// Update collision

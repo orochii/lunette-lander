@@ -44,7 +44,6 @@ public partial class PlayerGoal : StaticBody2D
 		var target = new Vector2(x, height);
     	var query = PhysicsRayQueryParameters2D.Create(origin, target);
     	var result = spaceState.IntersectRay(query);
-		GD.Print(result);
 		if (result.Count > 0) {
 			return result["position"].AsVector2();
 		}

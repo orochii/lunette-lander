@@ -8,19 +8,21 @@ public partial class Level : Node2D
 	[Export] int Seed;
 	[Export] Vector2 Size;
 	[Export] public int TotalEggs = 8;
+	[Export] public int TotalEnemies = 8;
 	[ExportGroup("Components")]
 	[Export] TerrainGenerator Terrain;
     [Export] PlayerGoal Goal;
-	[Export] Player Player;
+	[Export] public Player Player;
 	[Export] Camera2D Camera;
 	[Export] Minimap Minimap;
 	[Export] PackedScene EggTemplate;
+	[Export] PackedScene EnemyTemplate;
 	//
 	private List<Node2D> objectInstances = new List<Node2D>();
     public override void _Ready()
     {
         base._Ready();
-		Generate();
+		//Generate();
     }
     public async void Generate(bool randomize = true) {
 		Player.Reset();
@@ -57,6 +59,14 @@ public partial class Level : Node2D
 			AddChild(newEgg);
 			newEgg.GlobalPosition = location;
 			objectInstances.Add(newEgg);
+		}
+		for (int i = 0; i < TotalEnemies; i++) {
+			float horzPos = (float)GD.RandRange(16f, Size.X-16f);
+			Vector2 location = Goal.LookForPlace(horzPos, Size.Y);
+			Node2D newEnemy = EnemyTemplate.Instantiate<Node2D>();
+			AddChild(newEnemy);
+			newEnemy.GlobalPosition = location;
+			objectInstances.Add(newEnemy);
 		}
 	}
 }
