@@ -25,7 +25,7 @@ public partial class Player : RigidBody2D
 		BodyExited += OnBodyExited;
     }
 	private void OnBodyEntered(Node body) {
-		if (body is StaticBody2D) {
+		if (body is PhysicsBody2D) {
 			float speedMag = LinearVelocity.Length();
 			if (speedMag > 100) {
 				var explosion = ExplosionTemplate.Instantiate<Node2D>();

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bptrryf70yw4r"]
+[gd_scene load_steps=37 format=3 uid="uid://bptrryf70yw4r"]
 
 [ext_resource type="Script" path="res://src/Main.cs" id="1_0y7fv"]
 [ext_resource type="Texture2D" uid="uid://p3s4rtth223t" path="res://graphics/gridBack.png" id="1_eth3j"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://ccdj0iv8trma3" path="res://graphics/border.png" id="12_xqf5r"]
 [ext_resource type="FontFile" uid="uid://brjf5xp3log2f" path="res://graphics/m3x6oz.ttf" id="13_6iclm"]
 [ext_resource type="Script" path="res://src/GameMenu.cs" id="13_onwwf"]
+[ext_resource type="Script" path="res://src/Gameplay.cs" id="16_2p2s7"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_1ero0"]
 noise_type = 3
@@ -303,6 +304,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("16_2p2s7")
 
 [node name="Minimap" type="Control" parent="CanvasLayer/UI/Gameplay" node_paths=PackedStringArray("MinimapViewport", "MinimapCamera")]
 custom_minimum_size = Vector2(0, 32)
