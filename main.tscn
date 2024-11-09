@@ -116,13 +116,13 @@ Level = NodePath("Level")
 [node name="Level" type="Node2D" parent="." node_paths=PackedStringArray("Terrain", "Goal", "Player", "Camera", "Minimap")]
 script = ExtResource("5_uij61")
 Size = Vector2(1440, 640)
+EggTemplate = ExtResource("9_idegc")
+EnemyTemplate = ExtResource("4_wxcry")
 Terrain = NodePath("Terrain")
 Goal = NodePath("GoalBase")
 Player = NodePath("Player")
 Camera = NodePath("Player/Camera2D")
 Minimap = NodePath("../CanvasLayer/UI/Gameplay/Minimap")
-EggTemplate = ExtResource("9_idegc")
-EnemyTemplate = ExtResource("4_wxcry")
 
 [node name="Parallax2D" type="Parallax2D" parent="Level"]
 repeat_size = Vector2(32, 32)
@@ -213,8 +213,8 @@ max_contacts_reported = 1
 script = ExtResource("1_o7lns")
 TorqueForce = 75000.0
 ThrusterForce = 16000.0
-ThrustParticles = NodePath("GPUParticles2D")
 ExplosionTemplate = ExtResource("9_c0oo2")
+ThrustParticles = NodePath("GPUParticles2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Player"]
 shape = SubResource("RectangleShape2D_qjgij")
